@@ -1,0 +1,70 @@
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium import webdriver
+import pandas as pd
+import time
+
+
+webdriver_service = Service('path/to/chromedriver')  # Replace with the path to your chromedriver executable
+webdriver_options = Options()
+driver = webdriver.Chrome(service=webdriver_service, options=webdriver_options)
+driver.get("xyz link")
+
+open_link = driver.find_element(By.XPATH, 'open')
+open_link.click()
+
+click_laptop = driver.find_element(By.XPATH, 'click')
+click_laptop.click()
+
+Date_time = []
+Title = []
+Href = []
+
+for i in range(1,4):
+    date_time = driver.find_elements(By.XPATH, "datetime")
+    for i in date_time:
+        b=i[:10]
+        dt_object = datetime.strptime(b, '%Y/%m/%d %H:%M:%S')
+        date_only = dt_object.strftime('%Y/%m/%d')
+        Date_time.append(date_only)
+        
+        from datetime import datetime
+        dt_object = datetime.strptime(i, '%Y/%m/%d %H:%M:%S')
+
+        date_only = dt_object.strftime('%Y/%m/%d')
+        date_list.append(date_only)
+        
+        datetime_strings = ['2023/07/17 15:30:00', '2023/07/18 09:45:00', '2023/07/19 12:00:00']
+        dates_only = extract_dates_from_datetimes(datetime_strings)
+        print(dates_only)  
+        # Output: ['2023/07/17', '2023/07/18', '2023/07/19']
+        
+    title = driver.find_elements(By.XPATH, "//div[@class='inventory_item_desc']")
+    TITLE = []
+    for i in title:
+        TITLE.append(i.text)
+        
+    href = driver.find_elements(By.XPATH, "//div[@class='inventory_item_desc']")
+    HREF = []
+    for i in href:
+        HREF.append(i.text)
+
+
+
+from tqdm import tqdm
+href = [80]
+Address = []
+CV_Number = []
+for i in range tqdm(href):
+    driver.get(i)
+     Address = driver.find_elements(By.XPATH, "//div[@class='inventory_item_desc']")
+     ADDRESS = []
+     for i in Address:
+         ADDRESS.append(i.text)
+        
+     CV_number = driver.find_elements(By.XPATH, "//div[@class='inventory_item_desc']")
+     CV_NMBER = []
+     for i in CV_number:
+         CV_NMBER.append(i.text)
